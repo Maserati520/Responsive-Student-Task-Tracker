@@ -4,79 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Final Assignment</title>
-  <script>tailwind.config={darkMode:"class"}</script>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-  <header class="topbar">
-    <nav class="mx-auto flex max-w-6xl items-center justify-between p-4">
-      <h1 class="text-xl font-bold text-blue-600">Course Hub</h1>
-      <div class="flex gap-2 md:hidden">
-        <button id="themeMobile" class="rounded bg-blue-600 px-3 py-2 text-white">Dark</button>
-        <button id="hamburger" class="rounded border px-3 py-2">&#9776;</button>
-      </div>
-      <div id="nav" class="hidden items-center gap-2 md:flex">
-        <a class="nav active" href="#home">Home</a>
-        <a class="nav" href="#inputSec">Student</a>
-        <div class="relative">
-          <button id="dropBtn" class="nav">Activities &#9662;</button>
-          <div id="dropMenu" class="dropdown absolute right-0 mt-2 hidden w-40 rounded p-2 shadow">
-            <a class="nav block" href="#cards">Cards</a>
-            <a class="nav block" href="#listSec">List</a>
-          </div>
-        </div>
-        <a class="nav" href="#contact">Contact</a>
-        <button id="theme" class="rounded bg-blue-600 px-3 py-2 text-white">Dark</button>
-      </div>
-    </nav>
-  </header>
-  
-  <main class="mx-auto max-w-6xl p-4">
-    <!-- Hero Section -->
-    <section id="home" class="my-8 flex flex-col items-center justify-center rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 p-12 text-center text-white shadow-lg">
-      <h2 class="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl">Manage Your Tasks Efficiently</h2>
-      <p class="mb-8 max-w-2xl text-lg opacity-90">Stay organized, focused, and achieve your goals with our simple yet powerful task management application.</p>
-      <a href="#task-section" class="rounded-full bg-white px-8 py-3 font-semibold text-blue-600 shadow transition-transform hover:scale-105 hover:bg-gray-100">Get Started</a>
-    </section>
+    <script>
+    const form = document.getElementById('taskForm');
+    const taskNameInput = document.getElementById('taskName');
+    const taskDateInput = document.getElementById('taskDate');
+    const formError = document.getElementById('formError');
 
-    <!-- Task Section -->
-    <section id="task-section" class="my-12">
-      <div class="grid gap-8 md:grid-cols-3">
-        <!-- Task Form -->
-        <div class="col-span-1 rounded-2xl bg-white p-6 shadow-md border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
-          <h3 class="mb-6 text-2xl font-bold text-gray-800 dark:text-white">Add New Task</h3>
-          <form id="taskForm" class="flex flex-col gap-4">
-            <div>
-              <label for="taskName" class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">Task Description</label>
-              <input type="text" id="taskName" placeholder="What needs to be done?" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
-            </div>
-            <div>
-              <label for="taskDate" class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">Due Date</label>
-              <input type="date" id="taskDate" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
-            </div>
-            <button type="submit" class="mt-2 w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Add Task</button>
-          </form>
-          <div id="formError" class="mt-3 hidden text-sm text-red-500">Please fill out all fields.</div>
-        </div>
-
-        <!-- Task Display Area -->
-        <div class="col-span-1 md:col-span-2 rounded-2xl bg-white p-6 shadow-md border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
-          <div class="mb-6 flex items-center justify-between">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Your Tasks</h3>
-            <span id="taskCount" class="rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-800 dark:bg-blue-900 dark:text-blue-200">0 Tasks</span>
-          </div>
-          
-          <ul id="taskList" class="flex flex-col gap-3">
-            <!-- Tasks will be dynamically injected here -->
-            <li id="emptyState" class="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-200 p-8 text-center dark:border-gray-600">
-              <svg class="mb-3 h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-              <p class="text-gray-500 dark:text-gray-400">No tasks yet. Add one to get started!</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </main>
-    
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const taskName = taskNameInput.value.trim();
+      const taskDate = taskDateInput.value;
+      if (!taskName || !taskDate) {
+        formError.classList.remove('hidden');
+        return;
+      }
+      formError.classList.add('hidden');
+      form.reset();
+    });
+  </script>
 </body>
 </html>
