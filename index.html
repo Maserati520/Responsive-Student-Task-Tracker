@@ -24,11 +24,12 @@
           const li = document.createElement('li');
           li.className = 'flex items-center justify-between rounded-xl border border-gray-100 bg-gray-50 p-4 shadow-sm';
           li.innerHTML = <div class="flex flex-col"><span class="font-semibold text-gray-800"></span><span class="text-sm text-gray-500">Due: </span></div>;
-          taskList.appendChild(li);
+          li.innerHTML = `<div class="flex flex-col"><span class="font-semibold text-gray-800">${task.name}</span><span class="text-sm text-gray-500">Due: ${task.date}</span></div><button onclick="deleteTask(${index})" class="rounded-lg bg-red-100 px-3 py-2 text-sm text-red-600">Delete</button>`; taskList.appendChild(li);
         });
       }
     }
 
+    window.deleteTask = function(index) { tasks.splice(index, 1); renderTasks(); };
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       const taskName = taskNameInput.value.trim();
