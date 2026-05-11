@@ -38,6 +38,44 @@
       <p class="mb-8 max-w-2xl text-lg opacity-90">Stay organized, focused, and achieve your goals with our simple yet powerful task management application.</p>
       <a href="#task-section" class="rounded-full bg-white px-8 py-3 font-semibold text-blue-600 shadow transition-transform hover:scale-105 hover:bg-gray-100">Get Started</a>
     </section>
+
+    <!-- Task Section -->
+    <section id="task-section" class="my-12">
+      <div class="grid gap-8 md:grid-cols-3">
+        <!-- Task Form -->
+        <div class="col-span-1 rounded-2xl bg-white p-6 shadow-md border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+          <h3 class="mb-6 text-2xl font-bold text-gray-800 dark:text-white">Add New Task</h3>
+          <form id="taskForm" class="flex flex-col gap-4">
+            <div>
+              <label for="taskName" class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">Task Description</label>
+              <input type="text" id="taskName" placeholder="What needs to be done?" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+            </div>
+            <div>
+              <label for="taskDate" class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">Due Date</label>
+              <input type="date" id="taskDate" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+            </div>
+            <button type="submit" class="mt-2 w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Add Task</button>
+          </form>
+          <div id="formError" class="mt-3 hidden text-sm text-red-500">Please fill out all fields.</div>
+        </div>
+
+        <!-- Task Display Area -->
+        <div class="col-span-1 md:col-span-2 rounded-2xl bg-white p-6 shadow-md border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+          <div class="mb-6 flex items-center justify-between">
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Your Tasks</h3>
+            <span id="taskCount" class="rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-800 dark:bg-blue-900 dark:text-blue-200">0 Tasks</span>
+          </div>
+          
+          <ul id="taskList" class="flex flex-col gap-3">
+            <!-- Tasks will be dynamically injected here -->
+            <li id="emptyState" class="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-200 p-8 text-center dark:border-gray-600">
+              <svg class="mb-3 h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+              <p class="text-gray-500 dark:text-gray-400">No tasks yet. Add one to get started!</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
     
 </body>
