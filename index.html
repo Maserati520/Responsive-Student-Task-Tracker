@@ -29,6 +29,7 @@
       }
     }
 
+    function saveTasks() { localStorage.setItem('studentTasks', JSON.stringify(tasks)); }
     window.deleteTask = function(index) { tasks.splice(index, 1); renderTasks(); };
     form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -37,6 +38,7 @@
       if (!taskName || !taskDate) { formError.classList.remove('hidden'); return; }
       formError.classList.add('hidden');
       tasks.push({ name: taskName, date: taskDate });
+      saveTasks();
       renderTasks();
       form.reset();
     });
