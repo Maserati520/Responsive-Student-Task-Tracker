@@ -31,7 +31,7 @@
     }
 
     function saveTasks() { localStorage.setItem('studentTasks', JSON.stringify(tasks)); }
-    window.deleteTask = function(index) { tasks.splice(index, 1); renderTasks(); };
+    window.deleteTask = function(index) { tasks.splice(index, 1); saveTasks(); renderTasks(); };
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       const taskName = taskNameInput.value.trim();
