@@ -9,16 +9,34 @@
     const taskNameInput = document.getElementById('taskName');
     const taskDateInput = document.getElementById('taskDate');
     const formError = document.getElementById('formError');
+    const taskList = document.getElementById('taskList');
+    const emptyState = document.getElementById('emptyState');
+
+    let tasks = [];
+
+    function renderTasks() {
+      Array.from(taskList.children).forEach(child => { if (child.id !== 'emptyState') child.remove(); });
+      if (tasks.length === 0) {
+        emptyState.classList.remove('hidden'); emptyState.classList.add('flex');
+      } else {
+        emptyState.classList.remove('flex'); emptyState.classList.add('hidden');
+        tasks.forEach((task, index) => {
+          const li = document.createElement('li');
+          li.className = 'flex items-center justify-between rounded-xl border border-gray-100 bg-gray-50 p-4 shadow-sm';
+          li.innerHTML = <div class="flex flex-col"><span class="font-semibold text-gray-800"></span><span class="text-sm text-gray-500">Due: </span></div>;
+          taskList.appendChild(li);
+        });
+      }
+    }
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       const taskName = taskNameInput.value.trim();
       const taskDate = taskDateInput.value;
-      if (!taskName || !taskDate) {
-        formError.classList.remove('hidden');
-        return;
-      }
+      if (!taskName || !taskDate) { formError.classList.remove('hidden'); return; }
       formError.classList.add('hidden');
+      tasks.push({ name: taskName, date: taskDate });
+      renderTasks();
       form.reset();
     });
   </script>
