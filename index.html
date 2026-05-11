@@ -12,7 +12,8 @@
     const taskList = document.getElementById('taskList');
     const emptyState = document.getElementById('emptyState');
 
-    let tasks = [];
+    let tasks = JSON.parse(localStorage.getItem('studentTasks')) || [];
+    renderTasks();
 
     function renderTasks() {
       Array.from(taskList.children).forEach(child => { if (child.id !== 'emptyState') child.remove(); });
