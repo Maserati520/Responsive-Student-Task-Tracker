@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Final Assignment</title>
+  <script>tailwind.config={darkMode:"class"}</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between p-4">
+      <h1 class="text-xl font-bold text-blue-600">Course Hub</h1>
+      <div class="flex gap-2 md:hidden">
+        <button id="themeMobile" class="rounded bg-blue-600 px-3 py-2 text-white">Dark</button>
+        <button id="hamburger" class="rounded border px-3 py-2">&#9776;</button>
+      </div>
+      <div id="nav" class="hidden items-center gap-2 md:flex">
+        <a class="nav active" href="#home">Home</a>
+        <a class="nav" href="#inputSec">Student</a>
+        <div class="relative">
+          <button id="dropBtn" class="nav">Activities &#9662;</button>
+          <div id="dropMenu" class="dropdown absolute right-0 mt-2 hidden w-40 rounded p-2 shadow">
+            <a class="nav block" href="#cards">Cards</a>
+            <a class="nav block" href="#listSec">List</a>
+          </div>
+        </div>
+        <a class="nav" href="#contact">Contact</a>
+        <button id="theme" class="rounded bg-blue-600 px-3 py-2 text-white">Dark</button>
+      </div>
+    </nav>
+  </header>
+    
+</body>
+</html>
